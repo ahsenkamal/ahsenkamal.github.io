@@ -16,7 +16,7 @@ timezone:
 
 title: Ahsen's Blog # the main title
 
-tagline: A technical blog of my journey # it will display as the sub-title
+tagline: A random, technical blog of stuff I like and do... # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A simple technical blog of things that I like and do.
