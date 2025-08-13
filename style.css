@@ -1,31 +1,89 @@
 body {
-  max-width: 650px;
-  margin: 40px auto;
-  padding: 0 20px;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 10px;
   font-family: Georgia, serif;
   font-size: 18px;
-  line-height: 1.6;
-  color: #111;
-  background: #fff;
+  line-height: 1.65;
+  color: #1a1a1a;
+  background: #fffbe6;
 }
 
 h1, h2 {
-  font-family: sans-serif;
-  font-weight: bold;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  margin-top: 2em;
+  margin-bottom: 0.3em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+  position: relative;
+}
+
+h2 {
+  font-size: 1.25em;
+  color: #444;
+}
+
+.back-arrow {
+  position: absolute;
+  left: -1.5em;
+  top: 0;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.6;
+  font-size: 0.9em;
+  transition: opacity 0.15s ease;
+}
+
+.back-arrow:hover {
+  opacity: 1;
 }
 
 a {
-  color: #007acc;
-  text-decoration: none;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: #aaa;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #111;
+  text-decoration-color: #444;
 }
 
 ul {
-  padding-left: 20px;
+  padding-left: 1.2em;
+  margin-top: 0.4em;
 }
 
+li {
+  margin-bottom: 0.3em;
+}
+
+span {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.blog-date {
+  display: block;
+  margin-top: -0.5em;
+  margin-bottom: 1.5em;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.bottom-link {
+  margin-top: 2.5em;
+  display: inline-block;
+}
+
+@media (max-width: 800px) {
+  .back-arrow {
+    display: none;
+  }
+}
