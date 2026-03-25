@@ -1,12 +1,12 @@
 body {
-  max-width: 800px;
+  max-width: 650px;
   margin: 50px auto;
   padding: 0 10px;
   font-family: Georgia, serif;
   font-size: 18px;
   line-height: 1.65;
-  color: #1a1a1a;
-  background: #fffbe6;
+  color: #222;
+  background: #eeeeee;
 }
 
 h1, h2 {
@@ -24,7 +24,7 @@ h1 {
 
 h2 {
   font-size: 1.25em;
-  color: #444;
+  color: #222;
 }
 
 .back-arrow {
@@ -43,7 +43,7 @@ h2 {
 }
 
 a {
-  color: #000;
+  color: #444;
   text-decoration: underline;
   text-decoration-color: #aaa;
   text-underline-offset: 3px;
@@ -51,7 +51,7 @@ a {
 }
 
 a:hover {
-  color: #111;
+  color: #000;
   text-decoration-color: #444;
 }
 
@@ -83,7 +83,39 @@ span {
 }
 
 @media (max-width: 800px) {
+  body {
+    margin: 20px auto;
+    padding: 0 16px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    margin-top: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.15em;
+    margin-top: 1.2em;
+  }
+
   .back-arrow {
     display: none;
+  }
+
+  ul {
+    padding-left: 1em;
+  }
+
+  li {
+    margin-bottom: 0.25em;
+  }
+
+  .blog-date {
+    margin-bottom: 1.2em;
+  }
+
+  .bottom-link {
+    margin-top: 2em;
   }
 }
