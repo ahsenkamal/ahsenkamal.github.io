@@ -3,21 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahsen Kamal — Blog</title>
+  <title>Ahsen Kamal &mdash; Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
-  <h1>
-    <a href="index.html" class="back-arrow" title="Back to home">←</a>
-    Ahsen's Blog
-  </h1>
-  <p>Thoughts on whatever I feel like talking about.</p>
+<body class="blog-index">
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-  <h2>2025</h2>
-  <ul>
-    <li><a href="blog/test.html">Test Blog Post</a> <span>— Aug 2025</span></li>
-  </ul>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html" aria-label="Ahsen Kamal home">
+        <span class="monogram">AK</span>
+        <span class="site-name">Ahsen Kamal <span>/ blog</span></span>
+      </a>
+      <nav class="top-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <p><a class="bottom-link" href="index.html">Back to home</a></p>
+  <div class="page">
+    <aside class="toc" aria-label="Blog navigation">
+      <div class="toc-label">Contents</div>
+      <nav>
+        <a class="toc-link active" href="#latest">Latest</a>
+        <a class="toc-link" href="#queue">Queue</a>
+        <a class="toc-link" href="#archive">Archive</a>
+      </nav>
+
+      <div class="toc-links">
+        <div class="toc-label">Elsewhere</div>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/ahsenkamal" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="intro reveal">
+        <p class="eyebrow">Writing</p>
+        <h1>Ahsen's Blog</h1>
+        <p class="role">
+          Technical notes, build logs, and short posts on whatever I am thinking through.
+        </p>
+      </div>
+
+      <section id="latest" class="reveal">
+        <h2>Latest</h2>
+        <div class="entry-list">
+          <article class="entry blog-card">
+            <div>
+              <h3><a href="blog/test.html">Test Blog Post</a></h3>
+              <p>This is the first placeholder entry while the blog format evolves.</p>
+              <div class="tags">
+                <span class="tag">notes</span>
+                <span class="tag">site</span>
+              </div>
+            </div>
+            <time datetime="2025-08">Aug 2025</time>
+          </article>
+        </div>
+      </section>
+
+      <section id="queue" class="reveal">
+        <h2>Queue</h2>
+        <div class="entry-list">
+          <article class="entry blog-card">
+            <div>
+              <h3>Raft based KV store</h3>
+              <p>A distributed Key-Value Store using Raft written in async Rust</p>
+              <div class="tags">
+                <span class="tag">rust</span>
+              </div>
+            </div>
+            <span class="entry-meta">Soon</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="archive" class="reveal">
+        <h2>Archive</h2>
+        <div class="archive-year">2025</div>
+        <div class="entry-list compact">
+          <article class="entry">
+            <div>
+              <h3><a href="blog/test.html">Test Blog Post</a></h3>
+            </div>
+            <time datetime="2025-08">Aug 2025</time>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

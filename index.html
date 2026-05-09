@@ -4,32 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ahsen Kamal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="root">
-    <h1>Hi, I'm Ahsen.</h1>
-    <p>I like Rust, Systems, AI and Databases.</p>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-    <h2>Blog</h2>
-    <ul>
-        <li><a href="blog/test.html">Test Blog Post</a> <span>— Aug 2025</span></li>
-    </ul>
-    <p><a href="blog.html">See all blog posts</a></p>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html" aria-label="Ahsen Kamal home">
+        <span class="monogram">AK</span>
+        <span class="site-name">Ahsen Kamal <span>/ personal site</span></span>
+      </a>
+      <nav class="top-links" aria-label="Primary">
+        <a href="blog.html">Blog</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <h2>Projects</h2>
-    <ul>
-        <li><a href="https://fontdb.app">FontDB</a> - Your personal font database with all the tools to research fonts</li>
-        <li><a href="https://github.com/ahsenkamal/raft_kv">raft-kv</a> - A Raft-Based Distributed Key-Value Store in Rust</li>
-        <li><a href="https://github.com/ahsenkamal/doons">doons</a> - A guided build of a DNS Server in Rust</li>
-        <li><a href="https://github.com/ahsenkamal/ash">ash</a> - A UNIX-like shell in C</li>
-        <li><a href="https://github.com/ahsenkamal/p2p">p2p</a> - A p2p autodiscovery chat protocol</li>
-        <li><a href="https://github.com/ahsenkamal/tooter">tooter</a> — A terminal X client</li>
-    </ul>
+  <div class="page">
+    <aside class="toc" aria-label="Page navigation">
+      <div class="toc-label">Contents</div>
+      <nav>
+        <a class="toc-link active" href="#about">About</a>
+        <a class="toc-link" href="#blog">Blog</a>
+        <a class="toc-link" href="#projects">Projects</a>
+        <a class="toc-link" href="#contact">Contact</a>
+      </nav>
 
-    <h2>Contact</h2>
-    <p>DM me on X <a href="https://x.com/itsahsenkamal">@itsahsenkamal</a></p>
+      <div class="toc-links">
+        <div class="toc-label">Links</div>
+        <a href="https://github.com/ahsenkamal" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://x.com/itsahsenkamal" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://fontdb.app" target="_blank" rel="noopener noreferrer">FontDB <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="intro reveal">
+        <h1>Ahsen Kamal</h1>
+        <p class="role">
+          Software Engineer. I like <strong>Systems</strong>, <strong>AI</strong>, and
+          <strong>Databases</strong>.
+        </p>
+      </div>
+
+      <section id="about" class="reveal">
+        <h2>About</h2>
+        <p>
+          This is my space. I like going deep on technical topics, building projects, and writing about what I learn.
+          Lots of stuff coming up.
+        </p>
+      </section>
+
+      <section id="blog" class="reveal">
+        <h2>Blog</h2>
+        <div class="entry-list">
+          <article class="entry">
+            <div>
+              <h3><a href="blog/test.html">Test Blog Post</a></h3>
+              <p>Early placeholder notes while the writing section takes shape.</p>
+            </div>
+            <time datetime="2025-08">Aug 2025</time>
+          </article>
+        </div>
+        <a class="text-link" href="blog.html">See all blog posts</a>
+      </section>
+
+      <section id="projects" class="reveal">
+        <h2>Projects</h2>
+        <div class="entry-list">
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://fontdb.app" target="_blank" rel="noopener noreferrer">FontDB</a></h3>
+              <p>Your personal font database with tools to research fonts.</p>
+              <div class="tags">
+                <span class="tag">product</span>
+                <span class="tag">fonts</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://github.com/ahsenkamal/raft_kv" target="_blank" rel="noopener noreferrer">raft-kv</a></h3>
+              <p>A Raft-based distributed key-value store in Rust.</p>
+              <div class="tags">
+                <span class="tag">rust</span>
+                <span class="tag">distributed systems</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://github.com/ahsenkamal/doons" target="_blank" rel="noopener noreferrer">doons</a></h3>
+              <p>A guided build of a DNS server in Rust.</p>
+              <div class="tags">
+                <span class="tag">rust</span>
+                <span class="tag">networking</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://github.com/ahsenkamal/ash" target="_blank" rel="noopener noreferrer">ash</a></h3>
+              <p>A UNIX-like shell in C.</p>
+              <div class="tags">
+                <span class="tag">c</span>
+                <span class="tag">systems</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://github.com/ahsenkamal/p2p" target="_blank" rel="noopener noreferrer">p2p</a></h3>
+              <p>A peer-to-peer autodiscovery chat protocol.</p>
+              <div class="tags">
+                <span class="tag">protocols</span>
+                <span class="tag">networking</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry project-entry">
+            <div>
+              <h3><a href="https://github.com/ahsenkamal/tooter" target="_blank" rel="noopener noreferrer">tooter</a></h3>
+              <p>A terminal X client.</p>
+              <div class="tags">
+                <span class="tag">terminal</span>
+                <span class="tag">client</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <p>
+          DM me on X <a href="https://x.com/itsahsenkamal" target="_blank" rel="noopener noreferrer">@itsahsenkamal</a>.
+        </p>
+      </section>
+    </main>
   </div>
 </body>
 </html>
-

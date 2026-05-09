@@ -3,25 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Blog Post — Ahsen Kamal</title>
+  <title>Test Blog Post &mdash; Ahsen Kamal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
 </head>
-<body>
-  <h1>
-    <a href="../blog.html" class="back-arrow" title="Back to home">←</a>
-    Test Blog Post
-  </h1>
-  <span class="blog-date">August 2025</span>
+<body class="post-page">
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-  <p>
-    This is a test blog post. I need to write a really big line to see if it is 
-    readable. I'll probably be writing more stuff in the future. But for now this is 
-    just a test blog post, not really meant to be seen by anyone.
-  </p>
-  <p>
-    Ok bye!
-  </p>
-  
-  <p><a class="bottom-link" href="../blog.html">See all blogs</a></p>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../index.html" aria-label="Ahsen Kamal home">
+        <span class="monogram">AK</span>
+        <span class="site-name">Ahsen Kamal <span>/ post</span></span>
+      </a>
+      <nav class="top-links" aria-label="Primary">
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page">
+    <aside class="toc" aria-label="Post navigation">
+      <div class="toc-label">Post</div>
+      <nav>
+        <a class="toc-link active" href="#start">Start</a>
+        <a class="toc-link" href="#notes">Notes</a>
+      </nav>
+
+      <div class="toc-links">
+        <div class="toc-label">Navigate</div>
+        <a href="../blog.html">All posts</a>
+        <a href="../index.html">Home</a>
+      </div>
+    </aside>
+
+    <main class="content article-content">
+      <article>
+        <header id="start" class="intro reveal">
+          <p class="eyebrow">August 2025</p>
+          <h1>Test Blog Post</h1>
+          <p class="role">
+            A placeholder entry to test line length, spacing, and the feel of the blog.
+          </p>
+        </header>
+
+        <section id="notes" class="article-body reveal">
+          <p>
+            This is a test blog post. I need to write a really big line to see if it is
+            readable. I'll probably be writing more stuff in the future. But for now this
+            is just a test blog post, not really meant to be seen by anyone.
+          </p>
+          <p>
+            The new layout should make longer writing easier to scan, with a calmer page
+            width, soft section reveals, and a progress indicator that moves as you scroll.
+          </p>
+          <p>
+            Ok bye!
+          </p>
+        </section>
+      </article>
+    </main>
+  </div>
 </body>
 </html>
