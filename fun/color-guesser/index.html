@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Guesser &mdash; Ahsen Kamal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="color-guesser.css">
+  <script src="../../script.js" defer></script>
+  <script src="color-guesser.js" defer></script>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../../index.html" aria-label="Ahsen Kamal home">
+        <span class="monogram">AK</span>
+        <span class="site-name">Ahsen Kamal <span>/ fun</span></span>
+      </a>
+      <nav class="top-links" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../">Fun</a>
+        <a class="hide-sm" href="../../blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page game-page">
+    <main class="content">
+      <div class="intro reveal">
+        <p class="eyebrow"><a href="../">Fun</a> / Game</p>
+        <h1>Color Guesser</h1>
+        <p class="role">How well do you know your colors?</p>
+      </div>
+
+      <div class="mode-tabs" role="tablist" aria-label="Game mode">
+        <button class="mode-tab is-active" role="tab" aria-selected="true" aria-controls="mode-rgb" id="tab-rgb" data-mode="rgb">Guess the RGB</button>
+        <button class="mode-tab" role="tab" aria-selected="false" aria-controls="mode-wheel" id="tab-wheel" data-mode="wheel">Match on the wheel</button>
+      </div>
+
+      <!-- Mode 1: guess the RGB / hex values with higher/lower hints -->
+      <section class="game-panel" id="mode-rgb" role="tabpanel" aria-labelledby="tab-rgb">
+        <p class="game-help">
+          A random color is shown below. Guess its RGB values (or hex). After each guess you get a hint
+          for every channel: <strong>&uarr;</strong> go higher, <strong>&darr;</strong> go lower, <strong>&check;</strong> exact.
+        </p>
+
+        <div class="swatch-row">
+          <figure class="swatch-box">
+            <div class="swatch" id="rgb-target"></div>
+            <figcaption>Target</figcaption>
+          </figure>
+          <figure class="swatch-box">
+            <div class="swatch swatch-empty" id="rgb-last"></div>
+            <figcaption>Last guess</figcaption>
+          </figure>
+        </div>
+
+        <form class="guess-form" id="rgb-form" autocomplete="off">
+          <label class="field">
+            <span>R</span>
+            <input type="number" id="in-r" min="0" max="255" inputmode="numeric" placeholder="0–255" required>
+          </label>
+          <label class="field">
+            <span>G</span>
+            <input type="number" id="in-g" min="0" max="255" inputmode="numeric" placeholder="0–255" required>
+          </label>
+          <label class="field">
+            <span>B</span>
+            <input type="number" id="in-b" min="0" max="255" inputmode="numeric" placeholder="0–255" required>
+          </label>
+          <label class="field field-hex">
+            <span>Hex</span>
+            <input type="text" id="in-hex" maxlength="7" placeholder="#000000" spellcheck="false">
+          </label>
+          <button type="submit" class="btn btn-primary" id="rgb-submit">Guess</button>
+        </form>
+
+        <div class="status" id="rgb-status" aria-live="polite"></div>
+
+        <div class="game-actions">
+          <button type="button" class="btn" id="rgb-new">New color</button>
+          <button type="button" class="btn btn-ghost" id="rgb-giveup">Give up</button>
+        </div>
+
+        <ol class="history" id="rgb-history" reversed></ol>
+      </section>
+
+      <!-- Mode 2: find the target color on an HSL wheel -->
+      <section class="game-panel" id="mode-wheel" role="tabpanel" aria-labelledby="tab-wheel" hidden>
+        <p class="game-help">
+          Find the target color. Click or drag on the wheel to pick hue and saturation, and use the
+          lightness slider. Submit when you think you have it.
+        </p>
+
+        <div class="swatch-row">
+          <figure class="swatch-box">
+            <div class="swatch" id="wheel-target"></div>
+            <figcaption>Target</figcaption>
+          </figure>
+          <figure class="swatch-box">
+            <div class="swatch" id="wheel-pick"></div>
+            <figcaption>Yours</figcaption>
+          </figure>
+        </div>
+
+        <div class="wheel-layout">
+          <div class="wheel-wrap" id="wheel-wrap">
+            <canvas id="wheel" width="520" height="520" aria-label="Hue and saturation color wheel"></canvas>
+            <div class="wheel-marker" id="wheel-marker" aria-hidden="true"></div>
+          </div>
+
+          <div class="sliders">
+            <label class="slider">
+              <span>Hue <output id="out-h">0</output>&deg;</span>
+              <input type="range" id="sl-h" min="0" max="359" value="0">
+            </label>
+            <label class="slider">
+              <span>Saturation <output id="out-s">0</output>%</span>
+              <input type="range" id="sl-s" min="0" max="100" value="0">
+            </label>
+            <label class="slider">
+              <span>Lightness <output id="out-l">50</output>%</span>
+              <input type="range" id="sl-l" min="0" max="100" value="50">
+            </label>
+
+            <div class="game-actions">
+              <button type="button" class="btn btn-primary" id="wheel-submit">Submit</button>
+              <button type="button" class="btn" id="wheel-next">Next color</button>
+            </div>
+
+            <div class="status" id="wheel-status" aria-live="polite"></div>
+            <div class="score-line" id="wheel-score"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

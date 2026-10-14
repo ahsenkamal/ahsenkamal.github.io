@@ -270,6 +270,7 @@ p {
 }
 
 .content section {
+  scroll-margin-top: 96px;
   padding: 0 0 32px;
   margin-bottom: 32px;
   border-bottom: 1px solid var(--border);
@@ -471,7 +472,7 @@ body.is-loaded .entry.is-visible:hover {
     font-size: 2.7rem;
   }
 
-  .top-links a:nth-child(2) {
+  .top-links .hide-sm {
     display: none;
   }
 
