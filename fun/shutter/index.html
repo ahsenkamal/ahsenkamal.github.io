@@ -6,7 +6,7 @@
   <title>Shutter &mdash; Ahsen Kamal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="shutter.css">
   <script src="../../script.js" defer></script>
@@ -29,136 +29,162 @@
     </div>
   </header>
 
-  <div class="page shutter-page">
-    <main class="content">
-      <div class="intro reveal">
-        <p class="eyebrow"><a href="../">Fun</a> / Toy</p>
-        <h1>Shutter</h1>
-        <p class="role">A little camera in the woods. Change the settings and watch the photo react: blur, light, grain and motion all follow real camera math.</p>
-      </div>
+  <div class="shutter-page">
+    <div class="shutter-intro">
+      <h1>Shutter</h1>
+      <p class="role">A pocket camera simulator. Turn the focus ring, change the exposure and watch the photo react.</p>
+    </div>
 
-      <div class="viewfinder" id="viewfinder">
-        <canvas id="view" width="960" height="540" aria-label="Camera viewfinder showing a runner in a forest"></canvas>
-        <div class="vf-grid" aria-hidden="true"></div>
-        <div class="vf-reticle" id="reticle" aria-hidden="true"></div>
-        <div class="vf-hud vf-top" aria-hidden="true">
-          <span id="hud-mode">STATIC &middot; NOON</span>
-          <canvas id="hist" width="256" height="112"></canvas>
+    <div class="shutter-grid">
+      <section class="stage" aria-label="Camera">
+        <div class="viewfinder" id="viewfinder">
+          <canvas id="view" width="960" height="540" aria-label="Camera viewfinder"></canvas>
+          <div class="vf-grid" aria-hidden="true"></div>
+          <div class="vf-reticle" id="reticle" aria-hidden="true"></div>
+          <div class="vf-hud vf-top" aria-hidden="true">
+            <span id="hud-mode">TRIPOD</span>
+            <canvas id="hist" width="256" height="112"></canvas>
+          </div>
+          <div class="vf-hud vf-bottom" aria-hidden="true">
+            <span id="hud-shutter">1/500</span>
+            <span id="hud-aperture">F2</span>
+            <span id="hud-iso">ISO 100</span>
+            <span class="meter">
+              <span class="meter-scale"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="meter-needle" id="meter-needle"></span>
+            </span>
+            <span id="hud-ev">&plusmn;0.0</span>
+            <span class="hud-right"><span id="hud-focus">MF 6.0m</span> <span id="hud-focal">50mm</span></span>
+          </div>
+          <div class="vf-blink" id="blink" aria-hidden="true"></div>
         </div>
-        <div class="vf-hud vf-bottom" aria-hidden="true">
-          <span id="hud-shutter">1/500</span>
-          <span id="hud-aperture">F5.6</span>
-          <span id="hud-iso">ISO 100</span>
-          <span class="meter">
-            <span class="meter-scale"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-            <span class="meter-needle" id="meter-needle"></span>
-          </span>
-          <span id="hud-ev">&plusmn;0.0</span>
-          <span class="hud-focal" id="hud-focal">35mm</span>
-        </div>
-        <div class="vf-blink" id="blink" aria-hidden="true"></div>
-      </div>
 
-      <div class="dof">
-        <div class="dof-head">
-          <span>Depth of field</span>
-          <span id="dof-range">Sharp from 7.1 m to 16.4 m</span>
-        </div>
-        <canvas id="dof" height="72" aria-label="Depth of field scale. Drag to set focus distance."></canvas>
-      </div>
-
-      <div class="shoot-row">
-        <button class="shoot-btn" id="shoot" type="button" aria-label="Take photo"><span></span></button>
-        <div class="shoot-meta">
-          <strong>Take photo</strong>
-          <span>Space works too. Tap the scene to focus.</span>
-        </div>
-        <button class="btn-ghost" id="play" type="button">Pause</button>
-        <button class="btn-ghost" id="reset" type="button">Reset</button>
-      </div>
-
-      <div class="controls">
-        <div class="control">
-          <div class="control-head"><label for="ap">Aperture</label><output id="ap-out">f/5.6</output></div>
-          <input type="range" id="ap" min="0" max="10" step="1" value="6">
-          <p class="hint">Smaller f-number: more light, shallower focus.</p>
-        </div>
-        <div class="control">
-          <div class="control-head"><label for="sh">Shutter speed</label><output id="sh-out">1/500</output></div>
-          <input type="range" id="sh" min="0" max="12" step="1" value="3">
-          <p class="hint">Longer: more light, more motion blur.</p>
-        </div>
-        <div class="control">
-          <div class="control-head"><label for="iso">ISO</label><output id="iso-out">100</output></div>
-          <input type="range" id="iso" min="0" max="7" step="1" value="0">
-          <p class="hint">Higher: brighter, but grainier.</p>
-        </div>
-        <div class="control">
-          <div class="control-head"><label for="focal">Focal length</label><output id="focal-out">35 mm</output></div>
-          <input type="range" id="focal" min="18" max="135" step="1" value="35">
-          <p class="hint">Zoom. Long lenses blur backgrounds more.</p>
-        </div>
-        <div class="control">
-          <div class="control-head"><label for="focus">Focus distance</label><output id="focus-out">10 m</output></div>
-          <input type="range" id="focus" min="0" max="1000" step="1" value="500">
-          <p class="hint">Or tap the scene to focus there.</p>
-        </div>
-        <div class="control">
-          <div class="control-head"><label for="speed">Runner speed</label><output id="speed-out">5.0 m/s</output></div>
-          <input type="range" id="speed" min="0" max="10" step="0.5" value="5">
-          <p class="hint">From standing still to a full sprint.</p>
-        </div>
-      </div>
-
-      <div class="option-rows">
-        <div class="option-row">
-          <span class="option-label">Light</span>
-          <div class="seg" id="tod" role="group" aria-label="Time of day">
-            <button type="button" data-tod="noon" class="is-active">Noon</button>
-            <button type="button" data-tod="golden">Golden hour</button>
-            <button type="button" data-tod="overcast">Overcast</button>
-            <button type="button" data-tod="dusk">Dusk</button>
-            <button type="button" data-tod="night">Night</button>
+        <div class="lens-row">
+          <button class="shoot-btn" id="shoot" type="button" aria-label="Take photo (Space)" title="Take photo (Space)"><span></span></button>
+          <div class="ring-wrap">
+            <div class="ring-head">
+              <span>Focus ring &middot; drag or scroll</span>
+              <span id="dof-range">Sharp from 5.2 m to 7.1 m</span>
+            </div>
+            <canvas id="ring" height="60" tabindex="0" role="slider" aria-label="Focus distance" aria-valuetext="6 metres"></canvas>
           </div>
         </div>
-        <div class="option-row">
-          <span class="option-label">Camera</span>
-          <div class="seg" id="cam" role="group" aria-label="Camera movement">
-            <button type="button" data-cam="static" class="is-active">Tripod</button>
-            <button type="button" data-cam="pan">Pan with runner</button>
+
+      </section>
+
+      <aside class="panel" aria-label="Camera settings">
+        <div class="group">
+          <h2>Scene</h2>
+          <div class="seg seg-full" id="scene" role="group" aria-label="Scene">
+            <button type="button" data-v="forest" class="is-active">Forest</button>
+            <button type="button" data-v="city">City</button>
+            <button type="button" data-v="beach">Beach</button>
+          </div>
+          <div class="seg seg-full seg-sm" id="tod" role="group" aria-label="Light">
+            <button type="button" data-v="noon">Noon</button>
+            <button type="button" data-v="golden" class="is-active">Golden</button>
+            <button type="button" data-v="overcast">Cloudy</button>
+            <button type="button" data-v="dusk">Dusk</button>
+            <button type="button" data-v="night">Night</button>
           </div>
         </div>
-        <div class="option-row">
-          <span class="option-label">Overlays</span>
+
+        <div class="group">
+          <h2>Subject</h2>
+          <div class="seg seg-full" id="subj" role="group" aria-label="Subject">
+            <button type="button" data-v="standing" class="is-active">Standing</button>
+            <button type="button" data-v="runner">Running</button>
+          </div>
+          <div class="control">
+            <div class="control-head"><label for="dist">Distance from camera</label><output id="dist-out">6.0 m</output></div>
+            <input type="range" id="dist" min="2" max="30" step="0.5" value="6">
+          </div>
+          <div class="control" id="speed-control">
+            <div class="control-head"><label for="speed">Running speed</label><output id="speed-out">5.0 m/s</output></div>
+            <input type="range" id="speed" min="1" max="10" step="0.5" value="5">
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Exposure</h2>
+          <div class="control">
+            <div class="control-head"><label for="ap">Aperture</label><output id="ap-out">f/2</output></div>
+            <input type="range" id="ap" min="0" max="10" step="1" value="2">
+          </div>
+          <div class="control">
+            <div class="control-head"><label for="sh">Shutter speed</label><output id="sh-out">1/500</output></div>
+            <input type="range" id="sh" min="0" max="12" step="1" value="3">
+          </div>
+          <div class="control">
+            <div class="control-head"><label for="iso">ISO</label><output id="iso-out">100</output></div>
+            <input type="range" id="iso" min="0" max="7" step="1" value="0">
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Lens</h2>
+          <div class="control">
+            <div class="control-head"><label for="focal">Focal length</label><output id="focal-out">50 mm</output></div>
+            <input type="range" id="focal" min="18" max="135" step="1" value="50">
+          </div>
+          <div class="pair">
+            <span class="pair-label">Focus</span>
+            <div class="seg" id="fmode" role="group" aria-label="Focus mode">
+              <button type="button" data-v="mf" class="is-active">Manual</button>
+              <button type="button" data-v="af">Tap AF</button>
+            </div>
+          </div>
+          <div class="pair">
+            <span class="pair-label">Camera</span>
+            <div class="seg" id="cam" role="group" aria-label="Camera movement">
+              <button type="button" data-v="static" class="is-active">Tripod</button>
+              <button type="button" data-v="pan">Pan</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Overlays</h2>
           <div class="checks">
-            <label><input type="checkbox" id="opt-hist" checked> Histogram</label>
+            <label><input type="checkbox" id="opt-peak" checked> Focus peaking</label>
             <label><input type="checkbox" id="opt-zebra"> Zebras</label>
+            <label><input type="checkbox" id="opt-hist" checked> Histogram</label>
             <label><input type="checkbox" id="opt-grid"> Grid</label>
           </div>
+          <div class="panel-actions">
+            <button class="btn-ghost" id="play" type="button">Pause</button>
+            <button class="btn-ghost" id="reset" type="button">Reset camera</button>
+          </div>
         </div>
-      </div>
+      </aside>
 
       <div class="readouts" aria-live="polite">
-        <div class="readout"><span class="readout-label">Exposure</span><strong id="ro-exp">Well exposed</strong><span id="ro-exp-sub">Scene light EV 14</span></div>
-        <div class="readout"><span class="readout-label">Motion</span><strong id="ro-mot">Runner frozen</strong><span id="ro-mot-sub"></span></div>
-        <div class="readout"><span class="readout-label">Background</span><strong id="ro-bg">Sharp</strong><span id="ro-bg-sub"></span></div>
+        <div class="readout"><span class="readout-label">Exposure</span><strong id="ro-exp">Well exposed</strong><span id="ro-exp-sub"></span></div>
+        <div class="readout"><span class="readout-label">Motion</span><strong id="ro-mot">Subject frozen</strong><span id="ro-mot-sub"></span></div>
+        <div class="readout"><span class="readout-label">Focus</span><strong id="ro-foc">Subject sharp</strong><span id="ro-foc-sub"></span></div>
         <div class="readout"><span class="readout-label">Noise</span><strong id="ro-noise">Clean</strong><span id="ro-noise-sub"></span></div>
       </div>
+    </div>
 
-      <section class="film-section">
-        <h2>Film strip</h2>
-        <p class="film-empty" id="film-empty">No photos yet. Press the shutter.</p>
-        <div class="film" id="film"></div>
-      </section>
-    </main>
+    <section class="film-section">
+      <h2>Film strip</h2>
+      <p class="film-empty" id="film-empty">No photos yet. Press the shutter button or Space.</p>
+      <div class="film" id="film"></div>
+    </section>
   </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="peak-filter" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 0.2  0 0 0 0 0.4  1.8 6 0.6 0 -0.28"/>
+    </filter>
+  </svg>
 
   <dialog class="photo-dialog" id="photo-dialog">
     <img id="photo-img" alt="Captured photo">
     <div class="photo-bar">
       <span id="photo-meta"></span>
       <span class="photo-actions">
-        <a id="photo-download" download="shutter.png" href="#">Download</a>
+        <a id="photo-download" download="shutter.jpg" href="#">Download</a>
         <button type="button" id="photo-close">Close</button>
       </span>
     </div>
