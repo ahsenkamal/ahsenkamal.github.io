@@ -118,7 +118,7 @@
     subject: DEFAULTS.subject, subjectZ: DEFAULTS.subjectZ, speed: DEFAULTS.speed,
     pan: DEFAULTS.pan, focusMode: DEFAULTS.focusMode,
     playing: !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    hist: true, zebra: false, peak: true, grid: false
+    hist: true, zebra: false, peak: false, grid: false
   };
 
   var sim = { t: 0, dist: 0, phase: 0 };
